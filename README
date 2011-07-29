@@ -1,0 +1,11 @@
+This is a modified version of Martin Kaltenbrunner's TuioKinect (http://code.google.com/p/tuiokinect/). It uses OpenNI user-detection to automatically set the point-detection threshold.
+
+You will need openFrameworks (github version, untested with 062) and the following addons:
+
+ofxVectorMath
+ofxThread
+ofxOsc
+ofxOpenCv
+ofxOpenNI
+
+Tested and compiled with Xcode, OSX 10.6.
