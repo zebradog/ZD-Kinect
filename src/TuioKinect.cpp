@@ -192,14 +192,17 @@ void TuioKinect::update()
 	colorImage.convertToGrayscalePlanarImage(grayImage, 0);
 	
 	
-	for(int i= 0; i<16; i++) userGenerator.GetCoM(i,userPos[i]);
+	for(int i= 0; i<16; i++) userGenerator.GetCoM(i,userPos[i]); //get center of mass for up to 16 users
 	
+	//determine the deepest (closest.. ?) point of the user silhouette
 	for (int i =0 ; i < 640 * 480; i++) {
 		if(userPix[i]>0 && pix[i]>deepest) deepest = pix[i];
 	}
 	
+	//loop over every pixel.
 	for (int i =0 ; i < 640 * 480; i++) {
 		
+                //display the silhouette (dpix[])... I think
 		char depthVal = CLAMP(255-pix[i] / (deepest/(220)), 0, 255);
 		
 		imagePixels[i*3] = imagePix[i*3];
@@ -211,7 +214,9 @@ void TuioKinect::update()
 		}else{
 			dpix[i] = 0;
 		}
-		
+		//set the hand blob pixel (tpix[]) to white if in the silhouete (userPix[]) 
+		// and is closer than the center of mass (userPos[userPix[i]].Z) plus a threshold (thresholdOffset)
+                //otherwise set it to black
 		if (userPix[i]>0 && pix[i] < userPos[userPix[i]].Z - thresholdOffset) {
 			tpix[i] = 255;
 		}else{
