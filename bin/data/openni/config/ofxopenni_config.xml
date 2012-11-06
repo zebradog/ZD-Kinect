@@ -2,9 +2,9 @@
 	<Licenses>
 		<License vendor="PrimeSense" key="0KOIk2JeIBYClPWVnMoRKn5cdY4="/>
 	</Licenses>
-	<Log writeToConsole="false" writeToFile="false">
+	<Log writeToConsole="true" writeToFile="true">
 		<!-- 0 - Verbose, 1 - Info, 2 - Warning, 3 - Error (default) -->
-		<LogLevel value="0"/>
+		<LogLevel value="3"/>
 		<Masks>
 			<Mask name="ALL" on="true"/>
 		</Masks>
@@ -12,6 +12,7 @@
 		</Dumps>
 	</Log>
 	<ProductionNodes>
+        <!-- ofxImageGenerator -->
         <Node type="Image" name="Image1">
 			<Configuration>
 				<MapOutputMode xRes="640" yRes="480" FPS="30"/>
@@ -29,7 +30,8 @@
 		<!-- ofxUserGenerator -->
 		<Node type="User" />
         
-        <!-- ofxHandsGenerator
-		<Node type="Hands" /> -->
+        <!-- ofxGestureGenerator -->
+		<Node type="Gesture" />
+		<Node type="Hands" />
 	</ProductionNodes>
 </OpenNI>
